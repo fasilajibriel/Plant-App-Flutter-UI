@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-
-import '../../../constants.dart';
+import 'package:plant_app/templates/constants.dart';
 
 class TitleAndPrice extends StatelessWidget {
   const TitleAndPrice({
     Key key,
     this.title,
-    this.country,
     this.price,
   }) : super(key: key);
 
-  final String title, country;
+  final String title;
   final int price;
 
   @override
@@ -28,14 +26,6 @@ class TitleAndPrice extends StatelessWidget {
                       .textTheme
                       .headline4
                       .copyWith(color: kTextColor, fontWeight: FontWeight.bold),
-                ),
-                TextSpan(
-                  text: country,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w300,
-                  ),
                 ),
               ],
             ),

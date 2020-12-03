@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../constants.dart';
+import '../../../templates/constants.dart';
 import 'icon_card.dart';
 
 class ImageAndIcons extends StatelessWidget {
   const ImageAndIcons({
     Key key,
     @required this.size,
+    @required this.image
   }) : super(key: key);
 
   final Size size;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: kDefaultPadding * 3),
       child: SizedBox(
-        height: size.height * 0.8,
+        height: size.height * 0.7,
         child: Row(
           children: <Widget>[
             Expanded(
@@ -26,17 +28,6 @@ class ImageAndIcons extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: kDefaultPadding * 3),
                 child: Column(
                   children: <Widget>[
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: IconButton(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                        icon: SvgPicture.asset("assets/icons/back_arrow.svg"),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ),
                     Spacer(),
                     IconCard(icon: "assets/icons/sun.svg"),
                     IconCard(icon: "assets/icons/icon_2.svg"),
@@ -64,7 +55,7 @@ class ImageAndIcons extends StatelessWidget {
                 image: DecorationImage(
                   alignment: Alignment.centerLeft,
                   fit: BoxFit.cover,
-                  image: AssetImage("assets/images/img.png"),
+                  image: NetworkImage(image),
                 ),
               ),
             ),
