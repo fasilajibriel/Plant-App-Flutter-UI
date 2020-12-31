@@ -160,6 +160,7 @@ class _HomeState extends State<Home> {
                                                         image: data[index].image,
                                                         name: data[index].name,
                                                         priceVal: int.tryParse(data[index].price),
+                                                        id: data[index].id,
                                                       ),
                                                 ),
                                               );

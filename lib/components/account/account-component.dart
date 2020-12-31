@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'file:///C:/Users/ASUS/Documents/GitHub/plant-app-flutter-ui/lib/components/global/login-widget.dart';
 import 'package:plant_app/components/account/widgets/profile-widget.dart';
+import 'package:plant_app/components/global/login-widget.dart';
 import 'package:plant_app/templates/constants.dart';
 import 'package:plant_app/templates/custom-app-bar.dart';
 import 'package:plant_app/templates/title-card.dart';
@@ -43,7 +43,7 @@ class _AccountState extends State<Account> {
                   ],
                 ),
               ),
-              floatingActionButton: Get.find<SharedPreferences>()
+              /*floatingActionButton: Get.find<SharedPreferences>()
                       .getBool('isLoggedIn')
                   ? FloatingActionButton.extended(
                       backgroundColor: kPrimaryColor,
@@ -59,9 +59,23 @@ class _AccountState extends State<Account> {
                             .getString('userLName'));
                       },
                     )
-                  : Container(),
+                  : Container(),*/
             ),
-          )
+          ),
+          SafeArea(child: Column(
+            children: [
+              Row(
+                children: [
+                  Spacer(),
+                  IconButton(icon: Icon(Icons.logout, color: Colors.white,), onPressed: (){
+                    setState(() {
+                      Get.find<SharedPreferences>().setBool('isLoggedIn', false);
+                    });
+                  })
+                ],
+              ),
+            ],
+          ))
         ],
       ),
     );

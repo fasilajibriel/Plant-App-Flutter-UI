@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/ASUS/Documents/GitHub/plant-app-flutter-ui/lib/templates/constants.dart';
+import 'package:plant_app/templates/constants.dart';
 
 //Custom Imports
 

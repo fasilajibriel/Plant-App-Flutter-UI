@@ -24,6 +24,14 @@ class Validator{
     return null;
   }
 
+  static String validateContent(String name, BuildContext context){
+    if (name.trim().isEmpty) {
+      return "Please enter a request";
+    }
+
+    return null;
+  }
+
   static String validateQuantity(String value,BuildContext context){
     if(int.tryParse(value) == null || int.tryParse(value) <= 0){
       return "Quantity can not be less than 0";

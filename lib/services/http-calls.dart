@@ -8,6 +8,7 @@ class HTTPCalls {
   static const users = '/users';
   static const requests = '/requests';
   static const products = '/products';
+  static const cart = '/cart';
 
   static const get = '/get';
   static const create = '/create';
@@ -136,4 +137,86 @@ class HTTPCalls {
       return false;
     }
   }
+
+  static Future addRequest(int id, String content) async {
+    Map<String, dynamic> data = {
+      'id': id,
+      'content': content,
+    };
+
+    http.Response response = await http.post(
+        baseUrl + requests + create,
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json.encode(data)
+    );
+
+    if(response.body.isNotEmpty) {
+      return json.decode(response.body)/*.map((requests) => new Requests.fromJson(requests)).toList()*/;
+    } else {
+      return false;
+    }
+  }
+
+  static Future addToCart(int user_id, int product_id) async {
+    Map<String, dynamic> data = {
+      'user_id': user_id,
+      'product_id': product_id,
+    };
+
+    http.Response response = await http.post(
+        baseUrl + cart + create,
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json.encode(data)
+    );
+
+    if(response.body.isNotEmpty) {
+      return json.decode(response.body)/*.map((requests) => new Requests.fromJson(requests)).toList()*/;
+    } else {
+      return false;
+    }
+  }
+
+  static Future getUserOrders(int id) async {
+    Map<String, dynamic> data = {
+      'id': id,
+    };
+
+    http.Response response = await http.post(
+        baseUrl + cart + get,
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json.encode(data)
+    );
+
+    if(response.body.isNotEmpty) {
+      return json.decode(response.body)/*.map((requests) => new Requests.fromJson(requests)).toList()*/;
+    } else {
+      return false;
+    }
+  }
+
+  static Future getAllOrders() async {
+    http.Response response = await http.post(
+        baseUrl + cart + get,
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json'
+        }
+    );
+
+    if(response.body.isNotEmpty) {
+      return json.decode(response.body);
+    } else {
+      return false;
+    }
+  }
+
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'file:///C:/Users/ASUS/Documents/GitHub/plant-app-flutter-ui/lib/components/global/login-widget.dart';
+import 'package:plant_app/components/global/login-widget.dart';
 import 'package:plant_app/components/requests/widgets/my-requests-widget.dart';
-import 'file:///C:/Users/ASUS/Documents/GitHub/plant-app-flutter-ui/lib/templates/constants.dart';
+import 'package:plant_app/components/requests/widgets/submit-request-dialog-widget.dart';
+import 'package:plant_app/templates/constants.dart';
 import 'package:plant_app/templates/custom-app-bar.dart';
 import 'package:plant_app/templates/title-card.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,11 +36,12 @@ class _RequestsState extends State<Requests> {
                       title: 'Requests',
                     ),
                     Expanded(
-                        child: Get.find<SharedPreferences>().getBool('isLoggedIn')
-                            ? MyRequests()
-                            : LoginSignUp(
-                                refreshParent: refreshParent,
-                              )),
+                        child:
+                            Get.find<SharedPreferences>().getBool('isLoggedIn')
+                                ? MyRequests()
+                                : LoginSignUp(
+                                    refreshParent: refreshParent,
+                                  )),
                   ],
                 ),
               ),
@@ -51,13 +53,17 @@ class _RequestsState extends State<Requests> {
                           backgroundColor: kPrimaryColor,
                           icon: Icon(Icons.add),
                           label: Text("Submit Request"),
-                          onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (_) => AlertDialog(
-                                      title: Text('Submit Request'),
-                                      content: Container(),
-                                    ));
+                          onPressed: () async {
+                            String returnValue = await showDialog(
+                              context: context,
+                              builder: (_) => AlertDialog(
+                                  title: Text('Submit Request'),
+                                  content: SubmitRequest()),
+                            );
+
+                            if(returnValue == 'success') {
+                              setState(() {});
+                            }
                           },
                         )
                       : Container(),
